@@ -1,6 +1,7 @@
 <?php namespace Jtaurus\OmdbApi;
 
 use Jtaurus\OmdbApi\UnrecognizedApiParameterName;
+use Jtaurus\OmdbApi\InvalidParameterValue;
 
 class QueryBuilder{
 	
@@ -35,6 +36,9 @@ class QueryBuilder{
 		foreach($arrayOfParamaters as $key => $value){
 			if(!self::checkIfParameterRecognized($key)){
 				throw new UnrecognizedApiParameterName("Unrecognized parameter supplied.");
+			}
+			if(!self::checkIfParameterContainsAllowedValue($key,$value)){
+				throw new InvalidParameterValue("Parameter: " . $key . " contains invalid value of: " . $value);
 			}
 			$urlParameters .=  $key . '=' . $value . '&';
 		}
