@@ -9,7 +9,7 @@ class OmdbResult{
 
 
 	public function __construct($apiResponseBlob){
-		$this->apiResponseBlob = $apiResponseBlob;
+		$this->jsonData = $apiResponseBlob;
 	}
 
 	public function isJson(){

@@ -13,11 +13,5 @@
 
 Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
+	dd($omdbApiInstance->byID("tt2267998"));
 });
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);

@@ -5,15 +5,14 @@ use Jtaurus\OmdbApi\QueryBuilder;
 
 class OmdbApi{
 	
-	protected $resultLength = "short";
-	protected $dataType = "json";
-
 	public function __construct(){
 	}
 
 
-	public function byID($id, $length = "short", $return = "json"){
-
+	public function byID($i, $length = "short", $return = "json"){
+		$queryUrl = QueryBuilder::create(array("i" => $i, "plot" => $length, "r" => $return));
+		$omdbResult = (new OmdbQuery)->runQuery($queryUrl);
+		return $omdbResult->getJson();
 	}
 
 	public function byTitle($title, $length = "short", $return = "json"){
