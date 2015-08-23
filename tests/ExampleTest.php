@@ -49,5 +49,10 @@ class ExampleTest extends TestCase {
 		$this->assertInstanceOf("Jtaurus\OmdbApi\OmdbResult", $omdbResultInstance);
 	}
 
+	public function testIfOmdbResultReceivesProperJsonFormattedData(){
+		$queryInstance = new Jtaurus\OmdbApi\OmdbQuery();
+		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?s=gun&y=&plot=short&r=json");
+		$this->assertEquals($omdbResultInstance->isJson(), true);
+	}
 
 }
