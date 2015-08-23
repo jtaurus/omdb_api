@@ -1,12 +1,19 @@
 <?php namespace Jtaurus\OmdbApi;
 
-use  Jtaurus\OmdbApi\UnrecognizedApiParameterName;
+use Jtaurus\OmdbApi\UnrecognizedApiParameterName;
 
 class QueryBuilder{
 	
 	public static $apiHost = "http://www.omdbapi.com/";
+
 	public static $arrayOfAllowedParameters = array("s",
 		"i", "t", "type", "y", "plot", "r", "tomatoes", "callback", "v");
+
+	public static $arrayOfAllowedParameterValues = array(
+		"type" => array("movie", "series", "episode"),
+		"plot" => array("short", "full"),
+		"r" => array("json", "xml"),
+		"tomatoes" => array("true", "false"));
 
 	public function __construct(){
 	}
@@ -36,6 +43,15 @@ class QueryBuilder{
 
 	public static function checkIfParameterRecognized($parameterName){
 		return in_array($parameterName, self::$arrayOfAllowedParameters);
+	}
+
+	public static function checkIfParameterContainsAllowedValue($parameterName, $parameterValue){
+		if(array_key_exists($parameterName, self::$arrayOfAllowedParameterValues)){
+			if(!in_array($parameterValue, self::$arrayOfAllowedParameterValues[$parameterName])){
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

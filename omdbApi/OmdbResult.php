@@ -21,4 +21,8 @@ class OmdbResult{
 		}
 	}
 
+	public function getJson(){
+		return $this->jsonData;
+	}
+
 }

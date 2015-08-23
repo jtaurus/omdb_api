@@ -55,4 +55,15 @@ class ExampleTest extends TestCase {
 		$this->assertEquals($omdbResultInstance->isJson(), true);
 	}
 
+	public function testFailsOnPassingDisallowedParameterValue(){
+		$this->assertEquals(false, Jtaurus\OmdbApi\QueryBuilder::checkIfParameterContainsAllowedValue("type", "music"));
+	}
+
+	public function testPassesOnPassingAllowedParameterValue(){
+		$this->assertEquals(true, Jtaurus\OmdbApi\QueryBuilder::checkIfParameterContainsAllowedValue("type", "movie"));		
+	}
+
+	public function testPassesOnPassingUnfilteredParameter(){
+		$this->assertEquals(true, Jtaurus\OmdbApi\QueryBuilder::checkIfParameterContainsAllowedValue("y", "2015"));	
+	}
 }
