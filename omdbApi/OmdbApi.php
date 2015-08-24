@@ -16,10 +16,14 @@ class OmdbApi{
 	}
 
 	public function byTitle($title, $length = "short", $return = "json"){
-
+		$queryUrl = QueryBuilder::create(array("t" => $title, "plot" => $length, "r" => $return));
+		$omdbResult = (new OmdbQuery)->runQuery($queryUrl);
+		return $omdbResult->getJson();
 	}
 
 	public function byTitleYear($title, $year, $length = "short", $return = "json"){
-
+		$queryUrl = QueryBuilder::create(array("t" => $title, "y" => $year, "plot" => $length, "r" => $return));
+		$omdbResult = (new OmdbQuery)->runQuery($queryUrl);
+		return $omdbResult->getJson();
 	}
 }

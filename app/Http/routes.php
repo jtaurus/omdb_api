@@ -13,5 +13,5 @@
 
 Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
-	dd($omdbApiInstance->byID("tt2267998"));
+	dd($omdbApiInstance->byTitleYear("gone girl", "2014"));
 });
