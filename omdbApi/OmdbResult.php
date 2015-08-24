@@ -48,6 +48,14 @@ class OmdbResult{
 		return $this->dataAsArray;
 	}
 
+	public function getErrorMessage(){
+		return $this->errorMessage;
+	}
+
+	public function getResponseStatus(){
+		return $this->responseSuccessful;
+	}
+
 	protected function parseResponseMetaData(){
 		$this->responseSuccessful = (isset($this->dataAsArray["Response"]) && $this->dataAsArray["Response"] == "True") ? true : false;
 		$this->errorMessage = (isset($this->dataAsArray["Error"])) ? $this->dataAsArray["Error"] : null;
