@@ -26,12 +26,12 @@ class OmdbResult{
 	public function __construct($apiResponseBlob){
 		$this->apiResponseBlob = $apiResponseBlob;
 
-		if($this->isJson()){
+		if($this->isJson($apiResponseBlob)){
 			$this->jsonData = $apiResponseBlob;
 			$this->convertJsonToArray();
 		}
 
-		else if($this->isXml()){
+		else if($this->isXml($apiResponseBlob)){
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
 			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
@@ -78,8 +78,8 @@ class OmdbResult{
 		return $newArray;
 	}
 
-	public function isJson(){
-		if( json_decode($this->apiResponseBlob) == NULL){
+	public function isJson($data){
+		if( json_decode($data) == NULL){
 			return false;
 		}
 		else{
@@ -87,9 +87,9 @@ class OmdbResult{
 		}
 	}
 
-	public function isXml(){
+	public function isXml($data){
 			try{
-				if(simplexml_load_string($this->apiResponse) === false)
+				if(simplexml_load_string($data) === false)
 				{
 					return false;
 				}
