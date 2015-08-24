@@ -56,6 +56,30 @@ class OmdbResult{
 		return $this->responseSuccessful;
 	}
 
+	public function getTitle(){
+		return $this->title;
+	}
+
+	public function getYear(){
+		return $this->year;
+	}
+
+	public function getRated(){
+		return $this->rated;
+	}
+
+	public function getReleased(){
+		return $this->released;
+	}
+
+	public function getRuntime(){
+		return $this->runtime;
+	}
+
+	public function getGenre(){
+		return $this->genre;
+	}
+
 	protected function parseResponseMetaData(){
 		$this->responseSuccessful = (isset($this->dataAsArray["Response"]) && $this->dataAsArray["Response"] == "True") ? true : false;
 		$this->errorMessage = (isset($this->dataAsArray["Error"])) ? $this->dataAsArray["Error"] : null;
