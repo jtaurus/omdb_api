@@ -19,6 +19,6 @@ class OmdbQuery{
 		if($response->getStatusCode() != "200"){
 			throw new BadApiResponseException("OMDB didn't respond properly.");
 		}
-		return new OmdbResult($response->getBody());
+		return new OmdbResult((string) $response->getBody());
 	}
 }
