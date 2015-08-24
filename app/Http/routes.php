@@ -1,4 +1,4 @@
-<?php
+<?php namespace Jtaurus\OmdbApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,5 @@
 
 Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
-	$result = $omdbApiInstance->byTitleYear("gone girl", "2014");
-	var_dump($result->getTitle());
+	var_dump($omdbApiInstance->byTitleYear("gone girl", "2014")->getAssocArray());
 });
