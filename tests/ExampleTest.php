@@ -71,4 +71,11 @@ class ExampleTest extends TestCase {
 	public function testPassesOnPassingUnfilteredParameter(){
 		$this->assertEquals(true, Jtaurus\OmdbApi\QueryBuilder::checkIfParameterContainsAllowedValue("y", "2015"));	
 	}
+
+	public function testThatXmlAndJsonConversionResultsInTheSameData(){
+		$omdbApiInstance = App::make('OmdbApi');
+		$resultOfXmlConversion = $omdbApiInstance->byTitle("leon the professional", "full", "xml")->getAssocArray();
+		$resultOfJsonConversion = $omdbApiInstance->byTitle("leon the professional", "full", "json")->getAssocArray();
+		$this->assertEquals($resultOfJsonConversion, $resultOfXmlConversion);
+	}
 }
