@@ -3,6 +3,6 @@
 
 interface CreateFromApiResponse{
 
-	public function createFromApiResponse();
+	public function createFromApiResponse($apiResponse);
 	
 }
