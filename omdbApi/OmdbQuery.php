@@ -18,7 +18,7 @@ class OmdbQuery{
 		$response = $this->guzzleInstance->get($queryUrl);
 		if($response->getStatusCode() != "200"){
 			throw new BadApiResponseException("OMDB didn't respond properly.");
-		}
+			}
 		return new OmdbResult((string) $response->getBody());
 	}
 }
