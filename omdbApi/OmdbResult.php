@@ -22,26 +22,36 @@ class OmdbResult{
 
 	public function __construct($apiResponseBlob){
 		$this->apiResponseBlob = $apiResponseBlob;
+
 		if($this->isJson()){
 			$this->jsonData = $apiResponseBlob;
 			$this->convertJsonToArray();
 		}
+
 		else if($this->isXml()){
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
+			$this->reshapeArrayComingFromXml();
 		}
 		$this->parseResponseMetaData();
 		$this->parseBasicData();
 	}
 
 	public function convertJsonToArray(){
-		$this->dataAsArray = json_decode($this->jsonData, true);
+		$this->dataAsArray = array_change_key_case (json_decode($this->jsonData, true), CASE_LOWER);
 	}
 
 	public function convertXmlToArray(){
 		$loadedXml = simplexml_load_string($this->apiResponseBlob);
 		$asJson = json_encode($loadedXml);
-		$this->dataAsArray = json_decode($asJson, true);
+		$this->dataAsArray = array_change_key_case (json_decode($asJson, true), CASE_LOWER);
+	}
+
+	// We are reshaping the array provided from XML conversion.
+	// Its structure will be the same as the one coming from JSON response.
+
+	public function reshapeArrayComingFromXml(){
+
 	}
 
 	public function isJson(){

@@ -13,5 +13,6 @@
 
 Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
+	var_dump($omdbApiInstance->byTitleYear("gone girl", "2014", "full", "json")->getAssocArray());
 	var_dump($omdbApiInstance->byTitleYear("gone girl", "2014", "full", "xml")->getAssocArray());
 });
