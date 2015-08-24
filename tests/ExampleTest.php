@@ -39,7 +39,7 @@ class ExampleTest extends TestCase {
 		$parameters = array("t" => "some movie", "r" => "zip");
 		Jtaurus\OmdbApi\QueryBuilder::create($parameters);
 	}
-	
+
     /**
      * @expectedException Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi
      */
@@ -56,7 +56,8 @@ class ExampleTest extends TestCase {
 	public function testIfOmdbResultReceivesProperJsonFormattedData(){
 		$queryInstance = new Jtaurus\OmdbApi\OmdbQuery();
 		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?s=gun&y=&plot=short&r=json");
-		$this->assertEquals($omdbResultInstance->isJson(), true);
+		$received = $omdbResultInstance->getJson();
+		$this->assertEquals($omdbResultInstance->isJson($received), true);
 	}
 
 	public function testFailsOnPassingDisallowedParameterValue(){
