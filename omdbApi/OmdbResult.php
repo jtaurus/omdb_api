@@ -141,30 +141,30 @@ class OmdbResult{
 	protected function parseTitle()
 	{
 
-		$this->title = empty($this->dataAsArray["Title"]) ? NULL :$this->dataAsArray["Title"];
+		$this->title = empty($this->dataAsArray["title"]) ? NULL :$this->dataAsArray["title"];
 	}
 	protected function parseYear()
 	{
-		$this->year = empty($this->dataAsArray["Year"]) ? NULL :$this->dataAsArray["Year"];
+		$this->year = empty($this->dataAsArray["year"]) ? NULL :$this->dataAsArray["year"];
 
 	}
 	protected function parseRated()
 	{
-		$this->rated = empty($this->dataAsArray["Rated"]) ? NULL :$this->dataAsArray["Rated"];
+		$this->rated = empty($this->dataAsArray["rated"]) ? NULL :$this->dataAsArray["rated"];
 
 	}
 	protected function parseReleased()
 	{
-		$this->released = empty($this->dataAsArray["Released"]) ? NULL :$this->dataAsArray["Released"];
+		$this->released = empty($this->dataAsArray["released"]) ? NULL :$this->dataAsArray["released"];
 
 	}
 	protected function parseRuntime()
 	{
-		$this->runtime = empty($this->dataAsArray["Runtime"]) ? NULL :$this->dataAsArray["Runtime"];
+		$this->runtime = empty($this->dataAsArray["runtime"]) ? NULL :$this->dataAsArray["runtime"];
 
 	}
 	protected function parseGenre()
 	{
-		$this->genre = empty($this->dataAsArray["Genre"]) ? NULL :$this->dataAsArray["Genre"];
+		$this->genre = empty($this->dataAsArray["genre"]) ? NULL :$this->dataAsArray["genre"];
 	}
 }
