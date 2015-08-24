@@ -35,7 +35,7 @@ class QueryBuilder{
 		$urlParameters = "?";
 		foreach($arrayOfParamaters as $key => $value){
 			if(!self::checkIfParameterRecognized($key)){
-				throw new UnrecognizedApiParameterName("Unrecognized parameter supplied.");
+				throw new UnrecognizedApiParameterName("Unrecognized parameter name: " . $key . " supplied.");
 			}
 			if(!self::checkIfParameterContainsAllowedValue($key,$value)){
 				throw new InvalidParameterValue("Parameter: " . $key . " contains invalid value of: " . $value);

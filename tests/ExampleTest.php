@@ -43,6 +43,14 @@ class ExampleTest extends TestCase {
 			$this->assertEquals("?invalid_parameter1=value&invalid_parameter2=value2", Jtaurus\OmdbApi\QueryBuilder::serialize_parameters($parameters));
 	}
 
+    /**
+     * @expectedException Jtaurus\OmdbApi\InvalidParameterValue
+     */
+	public function testThrowsInvalidParameterValueWhenUsingInvalidParameterValue(){
+		$parameters = array("t" => "some movie", "r" => "zip");
+		Jtaurus\OmdbApi\QueryBuilder::create($parameters);
+	}
+
 	public function testIfOmdbQueryCreatesOmdbResultObject(){
 		$queryInstance = new Jtaurus\OmdbApi\OmdbQuery();
 		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?s=gun&y=&plot=short&r=json");

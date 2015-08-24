@@ -21,6 +21,7 @@ class OmdbResult{
 	protected $genre;
 
 	public function __construct($apiResponseBlob){
+		$this->apiResponseBlob = $apiResponseBlob;
 		$this->jsonData = $apiResponseBlob;
 		$this->convertJsonToArray();
 		$this->parseResponseMetaData();
