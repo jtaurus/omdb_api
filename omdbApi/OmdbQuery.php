@@ -2,6 +2,7 @@
 
 use Jtaurus\OmdbApi\UnrecognizedApiParameterName\BadApiResponseException;
 use Jtaurus\OmdbApi\OmdbResult;
+use Jtaurus\OmdbApi\CreateFromApiResponse;
 
 class OmdbQuery{
 	

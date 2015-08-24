@@ -2,5 +2,7 @@
 
 
 interface CreateFromApiResponse{
+
+	public function createFromApiResponse();
 	
 }
