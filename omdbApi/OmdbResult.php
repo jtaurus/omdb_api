@@ -2,6 +2,8 @@
 
 use Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi;
 
+use Exception;
+
 class OmdbResult{
 
 	protected $apiResponseBlob;
@@ -29,7 +31,7 @@ class OmdbResult{
 			$this->convertJsonToArray();
 		}
 
-		else if($this->isXml()){
+		else if($this->isXml($apiResponseBlob)){
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
 			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
@@ -85,15 +87,21 @@ class OmdbResult{
 		}
 	}
 
-	public function isXml(){
-		if(simplexml_load_string($this->apiResponseBlob === false))
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+	public function isXml($apiResponse){
+			try{
+				if(simplexml_load_string($apiResponse) === false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch(Exception $e)
+			{
+				return false;
+			}
 	}
 
 	public function getJson(){

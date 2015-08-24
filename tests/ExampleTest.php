@@ -2,17 +2,6 @@
 
 class ExampleTest extends TestCase {
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testBasicExample()
-	{
-		$response = $this->call('GET', '/');
-
-		$this->assertEquals(200, $response->getStatusCode());
-	}
 
 	public function testOmdbApiServiceProviderInstantiates(){
 		$this->assertInstanceOf("Jtaurus\OmdbApi\OmdbApi", $this->app->make("OmdbApi"));
@@ -49,6 +38,13 @@ class ExampleTest extends TestCase {
 	public function testThrowsInvalidParameterValueWhenUsingInvalidParameterValue(){
 		$parameters = array("t" => "some movie", "r" => "zip");
 		Jtaurus\OmdbApi\QueryBuilder::create($parameters);
+	}
+	
+    /**
+     * @expectedException Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi
+     */
+	public function testOmdbResultThrowsExceptionWhenReceivingUnknownDataFormat(){
+		$omdbResultInstance = new Jtaurus\OmdbApi\OmdbResult("some_unknown_data_format");
 	}
 
 	public function testIfOmdbQueryCreatesOmdbResultObject(){

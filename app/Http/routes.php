@@ -13,6 +13,5 @@
 
 Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
-	var_dump($omdbApiInstance->byTitleYear("gone girl", "2014", "full", "json")->getAssocArray());
-	var_dump($omdbApiInstance->byTitleYear("gone girl", "2014", "full", "xml")->getAssocArray());
+	var_dump($omdbResultInstance = new Jtaurus\OmdbApi\OmdbResult("some_unknown_data_format"));
 });
