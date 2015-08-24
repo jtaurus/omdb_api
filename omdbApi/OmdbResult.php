@@ -1,5 +1,6 @@
 <?php namespace Jtaurus\OmdbApi;
 
+use Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi;
 
 class OmdbResult{
 
@@ -32,6 +33,9 @@ class OmdbResult{
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
 			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
+		}
+		else{
+			throw new UnrecognizedDataStructureReturnedByApi("Api did not return JSON nor XML.");
 		}
 		$this->parseResponseMetaData();
 		$this->parseBasicData();
