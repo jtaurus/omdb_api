@@ -31,7 +31,7 @@ class OmdbResult{
 		else if($this->isXml()){
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
-			$this->reshapeArrayComingFromXml();
+			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
 		}
 		$this->parseResponseMetaData();
 		$this->parseBasicData();
@@ -59,8 +59,17 @@ class OmdbResult{
 	// We are reshaping the array provided from XML conversion.
 	// Its structure will be the same as the one coming from JSON response.
 
-	public function reshapeArrayComingFromXml(){
-
+	public function reshapeArrayComingFromXml($array){
+		$newArray = array();
+		foreach($array as $oneKey => $oneValue){
+			if(is_array($oneValue)){
+				$newArray = array_merge($newArray, $this->reshapeArrayComingFromXml($oneValue));
+			}
+			else{
+				$newArray[$oneKey] = $oneValue;
+			}
+		}
+		return $newArray;
 	}
 
 	public function isJson(){
