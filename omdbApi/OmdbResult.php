@@ -38,13 +38,22 @@ class OmdbResult{
 	}
 
 	public function convertJsonToArray(){
-		$this->dataAsArray = array_change_key_case (json_decode($this->jsonData, true), CASE_LOWER);
+		$this->dataAsArray = $this->convertAllArrayKeysToLowerCase(json_decode($this->jsonData, true), CASE_LOWER);
 	}
 
 	public function convertXmlToArray(){
 		$loadedXml = simplexml_load_string($this->apiResponseBlob);
 		$asJson = json_encode($loadedXml);
-		$this->dataAsArray = array_change_key_case (json_decode($asJson, true), CASE_LOWER);
+		$this->dataAsArray = $this->convertAllArrayKeysToLowerCase(json_decode($asJson, true));
+	}
+
+	protected function convertAllArrayKeysToLowerCase($array){
+		return array_map(function ($oneValue){
+			if(is_array($oneValue)){
+				$oneValue = $this->convertAllArrayKeysToLowerCase($oneValue);
+			}
+			return $oneValue;
+		}, array_change_key_case($array, CASE_LOWER));
 	}
 
 	// We are reshaping the array provided from XML conversion.
