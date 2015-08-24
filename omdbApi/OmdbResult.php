@@ -31,7 +31,7 @@ class OmdbResult{
 			$this->convertJsonToArray();
 		}
 
-		else if($this->isXml($apiResponseBlob)){
+		else if($this->isXml()){
 			$this->xmlData = $apiResponseBlob;
 			$this->convertXmlToArray();
 			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
@@ -87,9 +87,9 @@ class OmdbResult{
 		}
 	}
 
-	public function isXml($apiResponse){
+	public function isXml(){
 			try{
-				if(simplexml_load_string($apiResponse) === false)
+				if(simplexml_load_string($this->apiResponse) === false)
 				{
 					return false;
 				}
