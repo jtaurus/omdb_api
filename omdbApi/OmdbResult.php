@@ -28,25 +28,6 @@ class OmdbResult extends AbstractResultParser{
 		$this->parseBasicData();
 	}
 
-	protected function handleApiResponse($apiResponseBlob){
-		$this->apiResponseBlob = $apiResponseBlob;
-
-		if($this->isJson($apiResponseBlob)){
-			$this->jsonData = $apiResponseBlob;
-			$this->convertJsonToArray();
-		}
-
-		else if($this->isXml($apiResponseBlob)){
-			$this->xmlData = $apiResponseBlob;
-			$this->convertXmlToArray();
-			$this->dataAsArray = $this->reshapeArrayComingFromXml($this->dataAsArray);
-		}
-		else{
-			throw new UnrecognizedDataStructureReturnedByApi("Api did not return JSON nor XML.");
-		}
-		$this->parseResponseMetaData();
-	}
-
 	public function getTitle(){
 		return $this->title;
 	}
