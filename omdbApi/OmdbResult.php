@@ -15,12 +15,6 @@ class OmdbResult extends AbstractResultParser{
 	// Movie data:
 	protected $movieDataObject;
 
-	protected $title;
-	protected $year;
-	protected $rated;
-	protected $released;
-	protected $runtime;
-	protected $genre;
 
 	public function __construct($apiResponseBlob){
 		$this->handleApiResponse($apiResponseBlob);
@@ -31,27 +25,27 @@ class OmdbResult extends AbstractResultParser{
 		$this->movieDataObject = new MovieData();
 	}
 	public function getTitle(){
-		return $this->title;
+		return $this->movieDataObject->title;
 	}
 
 	public function getYear(){
-		return $this->year;
+		return $this->movieDataObject->year;
 	}
 
 	public function getRated(){
-		return $this->rated;
+		return $this->movieDataObject->rated;
 	}
 
 	public function getReleased(){
-		return $this->released;
+		return $this->movieDataObject->released;
 	}
 
 	public function getRuntime(){
-		return $this->runtime;
+		return $this->movieDataObject->runtime;
 	}
 
 	public function getGenre(){
-		return $this->genre;
+		return $this->movieDataObject->genre;
 	}
 
 	protected function parseBasicData(){
@@ -67,30 +61,30 @@ class OmdbResult extends AbstractResultParser{
 	protected function parseTitle()
 	{
 
-		$this->title = empty($this->dataAsArray["title"]) ? NULL :$this->dataAsArray["title"];
+		$this->movieDataObject->title = empty($this->dataAsArray["title"]) ? NULL :$this->dataAsArray["title"];
 	}
 	protected function parseYear()
 	{
-		$this->year = empty($this->dataAsArray["year"]) ? NULL :$this->dataAsArray["year"];
+		$this->movieDataObject->year = empty($this->dataAsArray["year"]) ? NULL :$this->dataAsArray["year"];
 
 	}
 	protected function parseRated()
 	{
-		$this->rated = empty($this->dataAsArray["rated"]) ? NULL :$this->dataAsArray["rated"];
+		$this->movieDataObject->rated = empty($this->dataAsArray["rated"]) ? NULL :$this->dataAsArray["rated"];
 
 	}
 	protected function parseReleased()
 	{
-		$this->released = empty($this->dataAsArray["released"]) ? NULL :$this->dataAsArray["released"];
+		$this->movieDataObject->released = empty($this->dataAsArray["released"]) ? NULL :$this->dataAsArray["released"];
 
 	}
 	protected function parseRuntime()
 	{
-		$this->runtime = empty($this->dataAsArray["runtime"]) ? NULL :$this->dataAsArray["runtime"];
+		$this->movieDataObject->runtime = empty($this->dataAsArray["runtime"]) ? NULL :$this->dataAsArray["runtime"];
 
 	}
 	protected function parseGenre()
 	{
-		$this->genre = empty($this->dataAsArray["genre"]) ? NULL :$this->dataAsArray["genre"];
+		$this->movieDataObject->genre = empty($this->dataAsArray["genre"]) ? NULL :$this->dataAsArray["genre"];
 	}
 }
