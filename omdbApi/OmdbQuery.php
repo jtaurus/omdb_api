@@ -15,7 +15,7 @@ class OmdbQuery{
 	* @param queryUrl - Url to query
 	* @return OmdbResult - OmdbResult object containing api data
 	*/
-	public function runQuery($queryUrl){
+	public function runQuery($queryUrl, CreateFromApiResponse $resultFactory){
 		$response = $this->guzzleInstance->get($queryUrl);
 		if($response->getStatusCode() != "200"){
 			throw new BadApiResponseException("OMDB didn't respond properly.");
