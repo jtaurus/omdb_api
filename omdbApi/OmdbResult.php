@@ -43,24 +43,6 @@ class OmdbResult extends AbstractResultParser{
 		$this->parseBasicData();
 	}
 
-
-
-	public function getJson(){
-		return $this->jsonData;
-	}
-
-	public function getAssocArray(){
-		return $this->dataAsArray;
-	}
-
-	public function getErrorMessage(){
-		return $this->errorMessage;
-	}
-
-	public function getResponseStatus(){
-		return $this->responseSuccessful;
-	}
-
 	public function getTitle(){
 		return $this->title;
 	}
@@ -85,10 +67,7 @@ class OmdbResult extends AbstractResultParser{
 		return $this->genre;
 	}
 
-	protected function parseResponseMetaData(){
-		$this->responseSuccessful = (isset($this->dataAsArray["response"]) && $this->dataAsArray["response"] == "True") ? true : false;
-		$this->errorMessage = (isset($this->dataAsArray["error"])) ? $this->dataAsArray["error"] : null;
-	}
+
 
 	protected function parseBasicData(){
 		$this->parseTitle();

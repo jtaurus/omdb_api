@@ -72,4 +72,25 @@ abstract class AbstractResultParser
 			}
 	}
 
+	public function getJson(){
+		return $this->jsonData;
+	}
+
+	public function getAssocArray(){
+		return $this->dataAsArray;
+	}
+
+	public function getErrorMessage(){
+		return $this->errorMessage;
+	}
+
+	public function getResponseStatus(){
+		return $this->responseSuccessful;
+	}
+
+	protected function parseResponseMetaData(){
+		$this->responseSuccessful = (isset($this->dataAsArray["response"]) && $this->dataAsArray["response"] == "True") ? true : false;
+		$this->errorMessage = (isset($this->dataAsArray["error"])) ? $this->dataAsArray["error"] : null;
+	}
+
 }
