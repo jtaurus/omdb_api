@@ -6,7 +6,7 @@ use Exception;
 	This class holds movie/series/episode data.
 */
 
-class MovideData{
+class MovieData{
 	
 
 }

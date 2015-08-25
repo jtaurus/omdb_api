@@ -3,6 +3,7 @@
 use Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi;
 use Jtaurus\OmdbApi\AbstractResultParser;
 use Exception;
+use Jtaurus\OmdbApi\MovieData;
 
 class OmdbResult extends AbstractResultParser{
 
@@ -12,6 +13,8 @@ class OmdbResult extends AbstractResultParser{
 	protected $dataAsArray;
 
 	// Movie data:
+	protected $movieDataObject;
+
 	protected $title;
 	protected $year;
 	protected $rated;
@@ -21,9 +24,12 @@ class OmdbResult extends AbstractResultParser{
 
 	public function __construct($apiResponseBlob){
 		$this->handleApiResponse($apiResponseBlob);
+		$this->instantiateMovieDataObject();
 		$this->parseBasicData();
 	}
-
+	protected function instantiateMovieDataObject(){
+		$this->movieDataObject = new MovieData();
+	}
 	public function getTitle(){
 		return $this->title;
 	}
