@@ -1,12 +1,16 @@
 <?php namespace Jtaurus\OmdbApi;
 
 use Exception;
-
+use ArrayAccess;
 /*
 	This class holds movie/series/episode data.
 */
 
-class MovieData{
+class MovieData implements ArrayAccess{
+
+	// data container for ArrayAccess
+
+	private $dataContainer = array();
 	
 	// data array sent by AbstractResultParser
 
@@ -22,6 +26,28 @@ class MovieData{
 	public function __construct($dataArray){
 		$this->dataArray = $dataArray;
 		$this->parseMovieData();
+	}
+
+	public function offsetExists($offset){
+		return isset($this->dataArray[$offset]);
+	}
+
+	public function offsetGet($offset){
+		return isset($this->dataArray[$offset]) ? $this->dataArray[$offset] : null;
+	}
+
+	public function offsetSet($offset, $value){
+		if(is_null($offset)){
+			$this->dataArray[] = $value;
+		}
+		else{
+			$this->dataArray[$offset] = $value;
+		}
+
+	}
+
+	public function offsetUnset($offset){
+		unset($this->dataArray[$offset]);
 	}
 
 	protected function parseMovieData()
