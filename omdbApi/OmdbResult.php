@@ -24,6 +24,11 @@ class OmdbResult extends AbstractResultParser{
 	protected $genre;
 
 	public function __construct($apiResponseBlob){
+		$this->handleApiResponse($apiResponseBlob);
+		$this->parseBasicData();
+	}
+
+	protected function handleApiResponse($apiResponseBlob){
 		$this->apiResponseBlob = $apiResponseBlob;
 
 		if($this->isJson($apiResponseBlob)){
@@ -40,7 +45,6 @@ class OmdbResult extends AbstractResultParser{
 			throw new UnrecognizedDataStructureReturnedByApi("Api did not return JSON nor XML.");
 		}
 		$this->parseResponseMetaData();
-		$this->parseBasicData();
 	}
 
 	public function getTitle(){
