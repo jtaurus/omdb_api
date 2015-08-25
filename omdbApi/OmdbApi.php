@@ -3,6 +3,7 @@
 use Jtaurus\OmdbApi\OmdbQuery;
 use Jtaurus\OmdbApi\QueryBuilder;
 use Jtaurus\OmdbApi\OmdbResultFactory;
+use Jtaurus\OmdbApi\SearchResultFactory;
 
 class OmdbApi{
 	
@@ -26,5 +27,12 @@ class OmdbApi{
 		$queryUrl = QueryBuilder::create(array("t" => $title, "y" => $year, "plot" => $length, "r" => $return));
 		$omdbResult = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory());
 		return $omdbResult;
+	}
+
+	public function search($query, $return = "json"){
+		$queryUrl = QueryBuilder::create(array("s" => $query, "r" => $return));
+		echo $queryUrl;
+		$searchResult = (new OmdbQuery)->runQuery($queryUrl, new SearchResultFactory());
+		return $searchResult;
 	}
 }
