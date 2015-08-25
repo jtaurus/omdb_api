@@ -11,10 +11,6 @@ class OmdbResult extends AbstractResultParser{
 	protected $xmlData;
 	protected $dataAsArray;
 
-	// Response data:
-	protected $responseSuccessful;
-	protected $errorMessage;
-
 	// Movie data:
 	protected $title;
 	protected $year;
@@ -51,8 +47,6 @@ class OmdbResult extends AbstractResultParser{
 	public function getGenre(){
 		return $this->genre;
 	}
-
-
 
 	protected function parseBasicData(){
 		$this->parseTitle();
