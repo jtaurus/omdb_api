@@ -74,25 +74,22 @@ class ExampleTest extends TestCase {
 
 	public function testThatXmlAndJsonConversionResultsInTheSameData(){
 		$omdbApiInstance = App::make('OmdbApi');
-		$resultOfXmlConversion = $omdbApiInstance->byTitle("leon the professional", "full", "xml")->getAssocArray();
-		$resultOfJsonConversion = $omdbApiInstance->byTitle("leon the professional", "full", "json")->getAssocArray();
+		$resultOfXmlConversion = $omdbApiInstance->byTitle("leon the professional", "full", "xml");
+		$resultOfJsonConversion = $omdbApiInstance->byTitle("leon the professional", "full", "json");
 		$this->assertEquals($resultOfJsonConversion, $resultOfXmlConversion);
 	}
 
 	public function testThatXmlAndJsonConversionOfErrorResultsInTheSameData(){
 		$omdbApiInstance = App::make('OmdbApi');
-		$resultOfXmlConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "xml")->getAssocArray();
-		$resultOfJsonConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "json")->getAssocArray();
+		$resultOfXmlConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "xml");
+		$resultOfJsonConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "json");
 		$this->assertEquals($resultOfJsonConversion, $resultOfXmlConversion);
 	}
 
 	public function testThatXmlAndJsonConversionResultsInExactlyTheSameData(){
 		$omdbApiInstance = App::make('OmdbApi');
-		$resultOfXmlConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "xml");
-		$resultOfJsonConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "json");
-		$this->assertEquals($resultOfJsonConversion->getTitle(), $resultOfXmlConversion->getTitle());	
-		$this->assertEquals($resultOfJsonConversion->getErrorMessage(), $resultOfXmlConversion->getErrorMessage());
-		$this->assertEquals($resultOfJsonConversion->getResponseStatus(), $resultOfXmlConversion->getResponseStatus());
-		$this->assertEquals($resultOfJsonConversion->getYear(), $resultOfXmlConversion->getYear());	
+		$resultOfXmlConversion = $omdbApiInstance->byTitle("gun", "full", "xml");
+		$resultOfJsonConversion = $omdbApiInstance->byTitle("gun", "full", "json");
+		$this->assertEquals($resultOfXmlConversion["title"], $resultOfJsonConversion["title"]);	
 	}
 }
