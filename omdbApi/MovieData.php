@@ -68,4 +68,28 @@ class MovieData{
 		$this->genre = empty($this->dataArray["genre"]) ? NULL :$this->dataArray["genre"];
 	}
 
+	public function getTitle(){
+		return $this->title;
+	}
+
+	public function getYear(){
+		return $this->year;
+	}
+
+	public function getRated(){
+		return $this->rated;
+	}
+
+	public function getReleased(){
+		return $this->released;
+	}
+
+	public function getRuntime(){
+		return $this->runtime;
+	}
+
+	public function getGenre(){
+		return $this->genre;
+	}
+
 }
