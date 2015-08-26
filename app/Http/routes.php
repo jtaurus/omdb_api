@@ -16,5 +16,5 @@ Route::get('/', function(){
 	//var_dump($omdbApiInstance->byTitle("leon the professional", "full", "xml")->getAssocArray());
 	//var_dump($omdbApiInstance->byTitle("leon the professional", "full", "json")->getAssocArray());
 	$searchResultReference = ($omdbApiInstance->getFirstFromSearch("gun"));
-	var_dump($searchResultReference);
+	var_dump($searchResultReference->getMovieData());
 });
