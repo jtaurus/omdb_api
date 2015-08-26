@@ -9,18 +9,22 @@ class SearchData
 
 	protected $searchResultsArray;
 
-	public function __construct($searchParserData){
+	public function __construct($searchParserData)
+	{
 		$this->searchParserData = $searchParserData;
 		$this->parseSearchParserDataIntoSearchResults();
 	}
 
-	protected function parseSearchParserDataIntoSearchResults(){
-		foreach($this->searchParserData["search"] as $oneSearchResult){
+	protected function parseSearchParserDataIntoSearchResults()
+	{
+		foreach($this->searchParserData["search"] as $oneSearchResult)
+		{
 			$this->searchResultsArray[] = new SearchResult($oneSearchResult);
 		}
 	}
 
-	public function getSearchResultsArray(){
+	public function getSearchResultsArray()
+	{
 		return $this->searchResultsArray;
 	}
 }
