@@ -95,6 +95,7 @@ class ExampleTest extends TestCase {
 
 	public function testMovieDataCanBeAccessedViaArrayAccess(){
 		$omdbApiInstance = App::make('OmdbApi');
-		$movieData = $omdbApiInstance->byTitle("guns")->
+		$movieData = $omdbApiInstance->byTitle("guns");
+		$this->assertEquals($movieData["title"], $movieData->getTitle());
 	}
 }
