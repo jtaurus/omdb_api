@@ -25,4 +25,12 @@ class SearchData{
 	{
 		return $this->searchResultsArray;
 	}
+
+	public function prefetchAllMovieDataObjects()
+	{
+		foreach($this->searchResultsArray as $oneResult)
+		{
+			$oneResult->fetchMovieData();
+		}
+	}
 }
