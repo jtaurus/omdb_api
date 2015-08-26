@@ -2,6 +2,5 @@
 
 use Exception;
 
-class UnrecognizedApiParameterName extends Exception
-{
+class UnrecognizedApiParameterName extends Exception{
 }
