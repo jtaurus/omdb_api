@@ -102,24 +102,24 @@ class ExampleTest extends TestCase {
 	// Search related tests:
 
 	public function testSearchParserReturnsArrayOfData(){
-		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
 		$this->assertInternalType("array", $parserInstance->getDataArray());
 	}
 
 	public function testSearchParserReturnsSearchDataObject(){
-		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
 		$this->assertInstanceOf("Jtaurus\OmdbApi\SearchData", $parserInstance->getSearchData());
 	}
 	
 	public function testSearchDataContainsAnArrayOfSearchResults(){
-		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
 		$this->assertInternalType("array", $parserInstance->getSearchData()->getSearchResultsArray());
 		$this->assertInstanceOf("Jtaurus\OmdbApi\SearchResult", $parserInstance->getSearchData()->getSearchResultsArray()[0]);
 	}
 
 	public function testSearchResultReturnsData(){
-		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
-		$searchResultReference = $parserInstance->getSearchData()->getSearchResultsArray()[0]);
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
+		$searchResultReference = $parserInstance->getSearchData()->getSearchResultsArray()[0];
 		$this->assertNotNull($searchResultReference->getTitle());
 		$this->assertNotNull($searchResultReference->getYear());
 		$this->assertNotNull($searchResultReference->getImdbId());
@@ -127,8 +127,8 @@ class ExampleTest extends TestCase {
 	}
 
 	public function testSearchResultConvertsToMovieData(){
-		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
-		$searchResultReference = $parserInstance->getSearchData()->getSearchResultsArray()[0]);
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
+		$searchResultReference = $parserInstance->getSearchData()->getSearchResultsArray()[0];
 		$this->assertInstanceOf("Jtaurus\OmdbApi\MovieData", $searchResultReference->getMovieData());
 	}
 
