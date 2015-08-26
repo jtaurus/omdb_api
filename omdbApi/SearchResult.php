@@ -1,6 +1,8 @@
 <?php namespace Jtaurus\OmdbApi;
 
 use Exception;
+use Jtaurus\OmdbApi\QueryBuilder;
+use Jtaurus\OmdbApi\OmdbResultFactory;
 
 class SearchResult
 {
@@ -11,6 +13,9 @@ class SearchResult
 	protected $year;
 	protected $imdbId;
 	protected $resultType;
+
+	// movie data reference, if fetched:
+	protected $movieDataReference;
 
 	public function __construct($dataBlob){
 		$this->dataBlob = $dataBlob;
@@ -54,5 +59,20 @@ class SearchResult
 
 	public function getResultType(){
 		return $this->resultType;
+	}
+
+	public function getMovieData(){
+		if(isset($this->movieDataReference)){
+			return $this->movieDataReference;
+		}
+		else{
+			$this->fetchMovieData();
+		}
+	}
+
+	protected function fetchMovieData(){
+		$queryUrl = (new QueryBuilder)->create(array("i" => $this->imdbId));
+		$omdbResultParserInstance = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory);
+		$this->movieDataReference = $omdbResultParserInstance->getMovieData();
 	}
 }
