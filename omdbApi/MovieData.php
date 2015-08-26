@@ -24,30 +24,30 @@ class MovieData implements ArrayAccess{
 	public $genre;
 
 	public function __construct($dataArray){
-		$this->dataArray = $dataArray;
+		$this->dataContainer["dataArray"] = $dataArray;
 		$this->parseMovieData();
 	}
 
 	public function offsetExists($offset){
-		return isset($this->dataArray[$offset]);
+		return isset($this->dataContainer["dataArray"][$offset]);
 	}
 
 	public function offsetGet($offset){
-		return isset($this->dataArray[$offset]) ? $this->dataArray[$offset] : null;
+		return isset($this->dataContainer["dataArray"][$offset]) ? $this->dataContainer["dataArray"][$offset] : null;
 	}
 
 	public function offsetSet($offset, $value){
 		if(is_null($offset)){
-			$this->dataArray[] = $value;
+			$this->dataContainer[] = $value;
 		}
 		else{
-			$this->dataArray[$offset] = $value;
+			$this->dataContainer[$offset] = $value;
 		}
 
 	}
 
 	public function offsetUnset($offset){
-		unset($this->dataArray[$offset]);
+		unset($this->dataContainer[$offset]);
 	}
 
 	protected function parseMovieData()
@@ -61,61 +61,61 @@ class MovieData implements ArrayAccess{
 	}
 
 	public function getDataArray(){
-		return $this->dataArray;
+		return $this->dataContainer["dataArray"];
 	}
 
 	protected function parseTitle()
 	{
 
-		$this->title = empty($this->dataArray["title"]) ? NULL :$this->dataArray["title"];
+		$this->dataContainer["title"] = empty($this->dataContainer["dataArray"]["title"]) ? NULL :$this->dataContainer["dataArray"]["title"];
 	}
 	protected function parseYear()
 	{
-		$this->year = empty($this->dataArray["year"]) ? NULL :$this->dataArray["year"];
+		$this->dataContainer["year"] = empty($this->dataContainer["dataArray"]["year"]) ? NULL :$this->dataContainer["dataArray"]["year"];
 
 	}
 	protected function parseRated()
 	{
-		$this->rated = empty($this->dataArray["rated"]) ? NULL :$this->dataArray["rated"];
+		$this->dataContainer["rated"] = empty($this->dataContainer["dataArray"]["rated"]) ? NULL :$this->dataContainer["dataArray"]["rated"];
 
 	}
 	protected function parseReleased()
 	{
-		$this->released = empty($this->dataArray["released"]) ? NULL :$this->dataArray["released"];
+		$this->dataContainer["released"] = empty($this->dataContainer["dataArray"]["released"]) ? NULL :$this->dataContainer["dataArray"]["released"];
 
 	}
 	protected function parseRuntime()
 	{
-		$this->runtime = empty($this->dataArray["runtime"]) ? NULL :$this->dataArray["runtime"];
+		$this->dataContainer["runtime"] = empty($this->dataContainer["dataArray"]["runtime"]) ? NULL :$this->dataContainer["dataArray"]["runtime"];
 
 	}
 	protected function parseGenre()
 	{
-		$this->genre = empty($this->dataArray["genre"]) ? NULL :$this->dataArray["genre"];
+		$this->dataContainer["genre"] = empty($this->dataContainer["dataArray"]["genre"]) ? NULL :$this->dataContainer["dataArray"]["genre"];
 	}
 
 	public function getTitle(){
-		return $this->title;
+		return $this->dataContainer["title"];
 	}
 
 	public function getYear(){
-		return $this->year;
+		return $this->dataContainer["year"];
 	}
 
 	public function getRated(){
-		return $this->rated;
+		return $this->dataContainer["rated"];
 	}
 
 	public function getReleased(){
-		return $this->released;
+		return $this->dataContainer["released"];
 	}
 
 	public function getRuntime(){
-		return $this->runtime;
+		return $this->dataContainer["runtime"];
 	}
 
 	public function getGenre(){
-		return $this->genre;
+		return $this->dataContainer["genre"];
 	}
 
 }

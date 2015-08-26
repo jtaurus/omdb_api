@@ -92,4 +92,8 @@ class ExampleTest extends TestCase {
 		$resultOfJsonConversion = $omdbApiInstance->byTitle("gun", "full", "json");
 		$this->assertEquals($resultOfXmlConversion["title"], $resultOfJsonConversion["title"]);	
 	}
+
+	public function testMovieDataCanBeAccessedViaArrayAccess(){
+		
+	}
 }
