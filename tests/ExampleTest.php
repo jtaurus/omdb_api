@@ -98,4 +98,13 @@ class ExampleTest extends TestCase {
 		$movieData = $omdbApiInstance->byTitle("guns");
 		$this->assertEquals($movieData["title"], $movieData->getTitle());
 	}
+
+	// Search related tests:
+
+	public function testSearchParserReturnsArrayOfData(){
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$this->assertInternalType("array", $parserInstance->getDataArray());
+	}
+
+
 }

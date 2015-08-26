@@ -6,7 +6,6 @@ use Jtaurus\OmdbApi\AbstractResultParser;
 class SearchParser extends AbstractResultParser
 
 {
-	protected $foundResults;
 
 	public function __construct($apiResponseBlob){
 		$this->handleApiResponse($apiResponseBlob);
@@ -19,5 +18,9 @@ class SearchParser extends AbstractResultParser
 
 	public function getArrayOfFoundResults(){
 		return $this->foundResults;
+	}
+
+	public function getDataArray(){
+		
 	}
 }
