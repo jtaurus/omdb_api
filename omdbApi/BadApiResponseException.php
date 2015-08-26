@@ -2,7 +2,6 @@
 
 Use Exception;
 
-class BadApiResponseException extends Exception
-{
+class BadApiResponseException extends Exception{
 	
 }
