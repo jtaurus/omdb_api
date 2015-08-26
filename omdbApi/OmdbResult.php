@@ -16,15 +16,19 @@ class OmdbResult extends AbstractResultParser{
 	public $movieDataObject;
 
 
-	public function __construct($apiResponseBlob){
+	public function __construct($apiResponseBlob)
+	{
 		$this->handleApiResponse($apiResponseBlob);
 		$this->instantiateMovieDataObject();
 	}
-	protected function instantiateMovieDataObject(){
+
+	protected function instantiateMovieDataObject()
+	{
 		$this->movieDataObject = new MovieData($this->dataAsArray);
 	}
 
-	public function getMovieData(){
+	public function getMovieData()
+	{
 		return $this->movieDataObject;
 	}
 }
