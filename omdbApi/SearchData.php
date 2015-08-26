@@ -2,11 +2,9 @@
 
 use Exception;
 
-class SearchData
-{
+class SearchData{
 	// data returned by SearchParser
 	protected $searchParserData;
-
 	protected $searchResultsArray;
 
 	public function __construct($searchParserData)

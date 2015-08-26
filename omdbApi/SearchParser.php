@@ -4,34 +4,39 @@ use Exception;
 use Jtaurus\OmdbApi\AbstractResultParser;
 use Jtaurus\OmdbApi\SearchData;
 
-class SearchParser extends AbstractResultParser
-
-{
+class SearchParser extends AbstractResultParser{
+	
 	protected $searchDataReference;
 
-	public function __construct($apiResponseBlob){
+	public function __construct($apiResponseBlob)
+	{
 		$this->handleApiResponse($apiResponseBlob);
 		$this->parseResponseIntoAnArrayOfMovies();
 		$this->createSearchDataObject();
 	}
 
-	public function createSearchDataObject(){
+	public function createSearchDataObject()
+	{
 		$this->searchDataReference = new SearchData($this->dataAsArray);
 	}
 
-	protected function parseResponseIntoAnArrayOfMovies(){
+	protected function parseResponseIntoAnArrayOfMovies()
+	{
 		$this->foundResults = $this->dataAsArray["search"];
 	}
 
-	public function getArrayOfFoundResults(){
+	public function getArrayOfFoundResults()
+	{
 		return $this->foundResults;
 	}
 
-	public function getDataArray(){
+	public function getDataArray()
+	{
 		return $this->dataAsArray;
 	}
 
-	public function getSearchData(){
+	public function getSearchData()
+	{
 		return $this->searchDataReference;
 	}
 }
