@@ -12,16 +12,6 @@ class MovieData implements ArrayAccess{
 
 	private $dataContainer = array();
 	
-	// data array sent by AbstractResultParser
-
-	public $dataArray;
-
-	public $title;
-	public $year;
-	public $rated;
-	public $released;
-	public $runtime;
-	public $genre;
 
 	public function __construct($dataArray){
 		$this->dataContainer["dataArray"] = $dataArray;
