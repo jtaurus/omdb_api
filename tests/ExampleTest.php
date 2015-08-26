@@ -132,4 +132,14 @@ class ExampleTest extends TestCase {
 		$this->assertInstanceOf("Jtaurus\OmdbApi\MovieData", $searchResultReference->getMovieData());
 	}
 
+	public function testSearchResultImplementsArrayAccess()
+	{
+		$omdApiInstance = new Jtaurus\OmdbApi\OmdbApi();
+		$someSearchResult = $omdApiInstance->getFirstFromSearch("gun");
+		$this->assertNotNull($someSearchResult["title"]);
+		$this->assertNotNull($someSearchResult["year"]);
+		$this->assertNotNull($someSearchResult["imdbId"]);
+		$this->assertNotNull($someSearchResult["resultType"]);
+	}
+
 }

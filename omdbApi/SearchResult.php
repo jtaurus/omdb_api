@@ -3,8 +3,11 @@
 use Exception;
 use Jtaurus\OmdbApi\QueryBuilder;
 use Jtaurus\OmdbApi\OmdbResultFactory;
+use ArrayAccess;
 
-class SearchResult{
+class SearchResult implements ArrayAccess{
+
+	protected $dataContainer = array();
 	// Blob passed by SearchData
 	protected $dataBlob;
 	protected $title;
@@ -17,8 +20,42 @@ class SearchResult{
 
 	public function __construct($dataBlob)
 	{
-		$this->dataBlob = $dataBlob;
+		$this->dataContainer["dataBlob"] = $dataBlob;
 		$this->parseDataBlobIntoInternalPropeteries();
+	}
+
+	public function offsetExists ( $offset )
+	{
+		return isset($this->dataContainer[$offset]);
+	}
+
+	public function offsetGet($offset)
+	{
+		if(!isset($this->dataContainer[$offset]))
+		{
+			return null;
+		}
+		else
+		{
+			return $this->dataContainer[$offset];
+		}
+	}
+	
+	public function offsetSet($offset, $value)
+	{
+		if(is_null($offset))
+		{
+			$this->dataContainer[] = $value;
+		}
+		else{
+			$this->dataContainer[$offset] = $value;
+		}
+
+	}
+
+	public function offsetUnset($offset)
+	{
+		unset($this->dataContainer[$offset]);
 	}
 
 	protected function parseDataBlobIntoInternalPropeteries()
@@ -31,54 +68,54 @@ class SearchResult{
 
 	protected function parseTitle()
 	{
-		$this->title = $this->dataBlob["title"];
+		$this->dataContainer["title"] = $this->dataContainer["dataBlob"]["title"];
 	}
 
 	protected function parseYear()
 	{
-		$this->year = $this->dataBlob["year"];
+		$this->dataContainer["year"] = $this->dataContainer["dataBlob"]["year"];
 	}
 
 	protected function parseImdbId()
 	{
-		$this->imdbId = $this->dataBlob["imdbid"];
+		$this->dataContainer["imdbId"] = $this->dataContainer["dataBlob"]["imdbid"];
 	}
 
 	protected function parseResultType()
 	{
-		$this->resultType = $this->dataBlob["type"];
+		$this->dataContainer["resultType"] = $this->dataContainer["dataBlob"]["type"];
 	}
 
 	public function getTitle()
 	{
-		return $this->title;
+		return $this->dataContainer["title"];
 	}
 
 	public function getYear()
 	{
-		return $this->year;
+		return $this->dataContainer["year"];
 	}
 
 	public function getImdbId()
 	{
-		return $this->imdbId;
+		return $this->dataContainer["imdbId"];
 	}
 
 	public function getResultType()
 	{
-		return $this->resultType;
+		return $this->dataContainer["resultType"];
 	}
 
 	public function getMovieData()
 	{
-		if(isset($this->movieDataReference))
+		if(isset($this->dataContainer["movieDataReference"]))
 		{
-			return $this->movieDataReference;
+			return $this->dataContainer["movieDataReference"];
 		}
 		else
 		{
 			$this->fetchMovieData();
-			return $this->movieDataReference;
+			return $this->dataContainer["movieDataReference"];
 		}
 	}
 
@@ -86,6 +123,6 @@ class SearchResult{
 	{
 		$queryUrl = (new QueryBuilder)->create(array("i" => $this->imdbId));
 		$omdbResultParserInstance = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory);
-		$this->movieDataReference = $omdbResultParserInstance->getMovieData();
+		$this->dataContainer["movieDataReference"] = $omdbResultParserInstance->getMovieData();
 	}
 }
