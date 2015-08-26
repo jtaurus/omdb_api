@@ -12,4 +12,8 @@ class SearchData
 	public function __construct($searchParserData){
 		$this->searchParserData = $searchParserData;
 	}
+
+	public function getSearchResultsArray(){
+		
+	}
 }
