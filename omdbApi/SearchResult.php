@@ -121,7 +121,7 @@ class SearchResult implements ArrayAccess{
 
 	protected function fetchMovieData()
 	{
-		$queryUrl = (new QueryBuilder)->create(array("i" => $this->imdbId));
+		$queryUrl = (new QueryBuilder)->create(array("i" => $this->dataContainer["imdbId"]));
 		$omdbResultParserInstance = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory);
 		$this->dataContainer["movieDataReference"] = $omdbResultParserInstance->getMovieData();
 	}
