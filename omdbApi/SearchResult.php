@@ -3,8 +3,11 @@
 use Exception;
 use Jtaurus\OmdbApi\QueryBuilder;
 use Jtaurus\OmdbApi\OmdbResultFactory;
+use ArrayAccess;
 
-class SearchResult{
+class SearchResult implements ArrayAccess{
+
+	protected $dataContainer = array();
 	// Blob passed by SearchData
 	protected $dataBlob;
 	protected $title;
@@ -19,6 +22,40 @@ class SearchResult{
 	{
 		$this->dataBlob = $dataBlob;
 		$this->parseDataBlobIntoInternalPropeteries();
+	}
+
+	public function offsetExists ( $offset )
+	{
+		return isset($this->dataContainer[$offset]);
+	}
+
+	public function offsetGet($offset)
+	{
+		if(!isset($this->dataContainer[$offset]))
+		{
+			return null;
+		}
+		else
+		{
+			return $this->dataContainer[$offset];
+		}
+	}
+	
+	public function offsetSet($offset, $value)
+	{
+		if(is_null($offset))
+		{
+			$this->dataContainer[] = $value;
+		}
+		else{
+			$this->dataContainer[$offset] = $value;
+		}
+
+	}
+
+	public function offsetUnset($offset)
+	{
+		unset($this->dataContainer[$offset]);
 	}
 
 	protected function parseDataBlobIntoInternalPropeteries()
