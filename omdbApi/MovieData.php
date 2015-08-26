@@ -12,31 +12,37 @@ class MovieData implements ArrayAccess{
 
 	private $dataContainer = array();
 	
-
-	public function __construct($dataArray){
+	public function __construct($dataArray)
+	{
 		$this->dataContainer["dataArray"] = $dataArray;
 		$this->parseMovieData();
 	}
 
-	public function offsetExists($offset){
+	public function offsetExists($offset)
+	{
 		return isset($this->dataContainer["dataArray"][$offset]);
 	}
 
-	public function offsetGet($offset){
+	public function offsetGet($offset)
+	{
 		return isset($this->dataContainer["dataArray"][$offset]) ? $this->dataContainer["dataArray"][$offset] : null;
 	}
 
-	public function offsetSet($offset, $value){
-		if(is_null($offset)){
+	public function offsetSet($offset, $value)
+	{
+		if(is_null($offset))
+		{
 			$this->dataContainer[] = $value;
 		}
-		else{
+		else
+		{
 			$this->dataContainer[$offset] = $value;
 		}
 
 	}
 
-	public function offsetUnset($offset){
+	public function offsetUnset($offset)
+	{
 		unset($this->dataContainer[$offset]);
 	}
 
@@ -50,7 +56,8 @@ class MovieData implements ArrayAccess{
 		$this->parseGenre();
 	}
 
-	public function getDataArray(){
+	public function getDataArray()
+	{
 		return $this->dataContainer["dataArray"];
 	}
 
@@ -84,27 +91,33 @@ class MovieData implements ArrayAccess{
 		$this->dataContainer["genre"] = empty($this->dataContainer["dataArray"]["genre"]) ? NULL :$this->dataContainer["dataArray"]["genre"];
 	}
 
-	public function getTitle(){
+	public function getTitle()
+	{
 		return $this->dataContainer["title"];
 	}
 
-	public function getYear(){
+	public function getYear()
+	{
 		return $this->dataContainer["year"];
 	}
 
-	public function getRated(){
+	public function getRated()
+	{
 		return $this->dataContainer["rated"];
 	}
 
-	public function getReleased(){
+	public function getReleased()
+	{
 		return $this->dataContainer["released"];
 	}
 
-	public function getRuntime(){
+	public function getRuntime()
+	{
 		return $this->dataContainer["runtime"];
 	}
 
-	public function getGenre(){
+	public function getGenre()
+	{
 		return $this->dataContainer["genre"];
 	}
 
