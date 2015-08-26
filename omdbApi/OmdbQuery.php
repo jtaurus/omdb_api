@@ -8,18 +8,21 @@ class OmdbQuery{
 	
 	public $guzzleInstance;
 
-	public function __construct(){
+	public function __construct()
+	{
 		$this->guzzleInstance = new \GuzzleHttp\Client();
 	}
 	/**
 	* @param queryUrl - Url to query
 	* @return OmdbResult - OmdbResult object containing api data
 	*/
-	public function runQuery($queryUrl, CreateFromApiResponse $resultFactory){
+	public function runQuery($queryUrl, CreateFromApiResponse $resultFactory)
+	{
 		$response = $this->guzzleInstance->get($queryUrl);
-		if($response->getStatusCode() != "200"){
+		if($response->getStatusCode() != "200")
+		{
 			throw new BadApiResponseException("OMDB didn't respond properly.");
-			}
+		}
 		return $resultFactory->createFromApiResponse($response);
 	}
 }
