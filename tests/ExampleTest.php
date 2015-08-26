@@ -126,4 +126,10 @@ class ExampleTest extends TestCase {
 		$this->assertNotNull($searchResultReference->getType());
 	}
 
+	public function testSearchResultConvertsToMovieData(){
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$searchResultReference = $parserInstance->getSearchData()->getSearchResultsArray()[0]);
+		$this->assertInstanceOf("Jtaurus\OmdbApi\MovieData", $searchResultReference->getMovieData());
+	}
+
 }
