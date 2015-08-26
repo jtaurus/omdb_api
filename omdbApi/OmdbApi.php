@@ -7,19 +7,22 @@ use Jtaurus\OmdbApi\SearchResultFactory;
 
 class OmdbApi{
 	
+	protected $omdbQueryInstance;
+
 	public function __construct(){
+		$this->omdbQueryInstance = new OmdbQuery;
 	}
 
 
 	public function byID($i, $length = "short", $return = "json"){
 		$queryUrl = QueryBuilder::create(array("i" => $i, "plot" => $length, "r" => $return));
-		$omdbResult = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory());
+		$omdbResult = $this->omdbQueryInstance->runQuery($queryUrl, new OmdbResultFactory());
 		return $omdbResult->getMovieData();
 	}
 
 	public function byTitle($title, $length = "short", $return = "json"){
 		$queryUrl = QueryBuilder::create(array("t" => $title, "plot" => $length, "r" => $return));
-		$omdbResult = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory());
+		$omdbResult = $this->omdbQueryInstance->runQuery($queryUrl, new OmdbResultFactory());
 		return $omdbResult->getMovieData();
 	}
 
@@ -32,7 +35,7 @@ class OmdbApi{
 	public function search($query, $return = "json"){
 		$queryUrl = QueryBuilder::create(array("s" => $query, "r" => $return));
 		echo $queryUrl;
-		$searchResult = (new OmdbQuery)->runQuery($queryUrl, new SearchParserFactory());
-		return $searchResult->getDataArray();
+		$searchParserInstance = $this->omdbQueryInstance->runQuery($queryUrl, new SearchParserFactory());
+		return $searchParserInstance->getSearchData()->getSearchResultsArray();
 	}
 }
