@@ -21,7 +21,7 @@ class SearchResult
 		$this->parseTitle();
 		$this->parseYear();
 		$this->parseImdbId();
-		$this->parseType();
+		$this->parseResultType();
 	}
 
 	protected function parseTitle(){
@@ -33,7 +33,7 @@ class SearchResult
 	}
 
 	protected function parseImdbId(){
-		$this->imdbId = $this->dataBlob["imdbId"];
+		$this->imdbId = $this->dataBlob["imdbid"];
 	}
 
 	protected function parseResultType(){
