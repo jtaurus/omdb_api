@@ -2,7 +2,6 @@
 
 use Exception;
 
-class InvalidParameterValue extends Exception
-{
+class InvalidParameterValue extends Exception{
 	
 }
