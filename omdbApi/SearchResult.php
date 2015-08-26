@@ -67,6 +67,7 @@ class SearchResult
 		}
 		else{
 			$this->fetchMovieData();
+			return $this->movieDataReference;
 		}
 	}
 
