@@ -28,7 +28,7 @@ class OmdbApi{
 
 	public function byTitleYear($title, $year, $length = "short", $return = "json"){
 		$queryUrl = QueryBuilder::create(array("t" => $title, "y" => $year, "plot" => $length, "r" => $return));
-		$omdbResult = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory());
+		$omdbResult = $this->omdbQueryInstance->runQuery($queryUrl, new OmdbResultFactory());
 		return $omdbResult->getMovieData();
 	}
 
