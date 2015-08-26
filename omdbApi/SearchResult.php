@@ -3,7 +3,7 @@
 use Exception;
 use Jtaurus\OmdbApi\AbstractResultParser;
 
-class SearchResult extends AbstractResultParser
+class SearchParser extends AbstractResultParser
 
 {
 	protected $foundResults;
