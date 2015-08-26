@@ -15,5 +15,6 @@ Route::get('/', function(){
 	$omdbApiInstance = App::make('OmdbApi');
 	//var_dump($omdbApiInstance->byTitle("leon the professional", "full", "xml")->getAssocArray());
 	//var_dump($omdbApiInstance->byTitle("leon the professional", "full", "json")->getAssocArray());
-	var_dump($omdbApiInstance->getFirstFromSearch("gun"));
+	$searchResultReference = ($omdbApiInstance->getFirstFromSearch("gun"));
+	var_dump($searchResultReference);
 });

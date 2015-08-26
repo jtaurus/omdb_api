@@ -20,7 +20,7 @@ class SearchResult implements ArrayAccess{
 
 	public function __construct($dataBlob)
 	{
-		$this->dataBlob = $dataBlob;
+		$this->dataContainer["dataBlob"] = $dataBlob;
 		$this->parseDataBlobIntoInternalPropeteries();
 	}
 
@@ -68,54 +68,54 @@ class SearchResult implements ArrayAccess{
 
 	protected function parseTitle()
 	{
-		$this->title = $this->dataBlob["title"];
+		$this->dataContainer["title"] = $this->dataContainer["dataBlob"]["title"];
 	}
 
 	protected function parseYear()
 	{
-		$this->year = $this->dataBlob["year"];
+		$this->dataContainer["year"] = $this->dataContainer["dataBlob"]["year"];
 	}
 
 	protected function parseImdbId()
 	{
-		$this->imdbId = $this->dataBlob["imdbid"];
+		$this->dataContainer["imdbId"] = $this->dataContainer["dataBlob"]["imdbid"];
 	}
 
 	protected function parseResultType()
 	{
-		$this->resultType = $this->dataBlob["type"];
+		$this->dataContainer["resultType"] = $this->dataContainer["dataBlob"]["type"];
 	}
 
 	public function getTitle()
 	{
-		return $this->title;
+		return $this->dataContainer["title"];
 	}
 
 	public function getYear()
 	{
-		return $this->year;
+		return $this->dataContainer["year"];
 	}
 
 	public function getImdbId()
 	{
-		return $this->imdbId;
+		return $this->dataContainer["imdbId"];
 	}
 
 	public function getResultType()
 	{
-		return $this->resultType;
+		return $this->dataContainer["resultType"];
 	}
 
 	public function getMovieData()
 	{
-		if(isset($this->movieDataReference))
+		if(isset($this->dataContainer["movieDataReference"]))
 		{
-			return $this->movieDataReference;
+			return $this->dataContainer["movieDataReference"];
 		}
 		else
 		{
 			$this->fetchMovieData();
-			return $this->movieDataReference;
+			return $this->dataContainer["movieDataReference"];
 		}
 	}
 
@@ -123,6 +123,6 @@ class SearchResult implements ArrayAccess{
 	{
 		$queryUrl = (new QueryBuilder)->create(array("i" => $this->imdbId));
 		$omdbResultParserInstance = (new OmdbQuery)->runQuery($queryUrl, new OmdbResultFactory);
-		$this->movieDataReference = $omdbResultParserInstance->getMovieData();
+		$this->dataContainer["movieDataReference"] = $omdbResultParserInstance->getMovieData();
 	}
 }
