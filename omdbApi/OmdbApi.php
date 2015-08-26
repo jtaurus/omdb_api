@@ -33,6 +33,6 @@ class OmdbApi{
 		$queryUrl = QueryBuilder::create(array("s" => $query, "r" => $return));
 		echo $queryUrl;
 		$searchResult = (new OmdbQuery)->runQuery($queryUrl, new SearchParserFactory());
-		return $searchResult;
+		return $searchResult->getDataArray();
 	}
 }

@@ -4,7 +4,10 @@ use Exception;
 
 class SearchResult
 {
-	public function __construct(){
-		
+	// Blob passed by SearchData
+	protected $dataBlob;
+
+	public function __construct($dataBlob){
+		$this->dataBlob = $dataBlob;
 	}
 }
