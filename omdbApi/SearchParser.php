@@ -21,6 +21,10 @@ class SearchParser extends AbstractResultParser
 	}
 
 	public function getDataArray(){
+
+	}
+
+	public function getSearchData(){
 		
 	}
 }

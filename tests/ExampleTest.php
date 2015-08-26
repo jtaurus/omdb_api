@@ -106,5 +106,13 @@ class ExampleTest extends TestCase {
 		$this->assertInternalType("array", $parserInstance->getDataArray());
 	}
 
+	public function testSearchParserReturnsSearchDataObject(){
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=gun&r=json", new Jtaurus\OmdbApi\SearchResultFactory);
+		$this->assertInstanceOf("Jtaurus\OmdbApi\SearchData", $parserInstance->getSearchData());
+	}
+	public function testSearchDataContainsAnArrayOfSearchResults(){
+
+	}
+
 
 }

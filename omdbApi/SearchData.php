@@ -9,7 +9,7 @@ class SearchData
 
 	protected $searchResultsArray;
 
-	public __construct($searchParserData){
+	public function __construct($searchParserData){
 		$this->searchParserData = $searchParserData;
 	}
 }
