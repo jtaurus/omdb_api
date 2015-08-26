@@ -2,7 +2,5 @@
 
 Use Exception;
 
-class UnrecognizedDataStructureReturnedByApi extends Exception
-{
-	
+class UnrecognizedDataStructureReturnedByApi extends Exception{
 }
