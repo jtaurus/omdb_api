@@ -123,7 +123,7 @@ class ExampleTest extends TestCase {
 		$this->assertNotNull($searchResultReference->getTitle());
 		$this->assertNotNull($searchResultReference->getYear());
 		$this->assertNotNull($searchResultReference->getImdbId());
-		$this->assertNotNull($searchResultReference->getType());
+		$this->assertNotNull($searchResultReference->getResultType());
 	}
 
 	public function testSearchResultConvertsToMovieData(){
