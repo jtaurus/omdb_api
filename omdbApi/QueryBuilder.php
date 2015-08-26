@@ -16,13 +16,16 @@ class QueryBuilder{
 		"r" => array("json", "xml"),
 		"tomatoes" => array("true", "false"));
 
-	public function __construct(){
+	public function __construct()
+	{
+
 	}
 	/*
 		Create an url of hostname + api parameters or throw an exception
 	*/
 
-	public static function create($arrayOfParameters){
+	public static function create($arrayOfParameters)
+	{
 		return self::$apiHost . self::serialize_parameters($arrayOfParameters);
 	}
 
@@ -30,14 +33,18 @@ class QueryBuilder{
 		@param - array of parameters - key->value - key - parameter name, value - parameter value
 		@return - string - created URL
 	*/
-	public static function serialize_parameters($arrayOfParamaters){
+	public static function serialize_parameters($arrayOfParamaters)
+	{
 		//http://www.omdbapi.com/?t=lol&y=&plot=short&r=json
 		$urlParameters = "?";
-		foreach($arrayOfParamaters as $key => $value){
-			if(!self::checkIfParameterRecognized($key)){
+		foreach($arrayOfParamaters as $key => $value)
+		{
+			if(!self::checkIfParameterRecognized($key))
+			{
 				throw new UnrecognizedApiParameterName("Unrecognized parameter name: " . $key . " supplied.");
 			}
-			if(!self::checkIfParameterContainsAllowedValue($key,$value)){
+			if(!self::checkIfParameterContainsAllowedValue($key,$value))
+			{
 				throw new InvalidParameterValue("Parameter: " . $key . " contains invalid value of: " . $value);
 			}
 			$urlParameters .=  $key . '=' . $value . '&';
@@ -45,13 +52,17 @@ class QueryBuilder{
 		return rtrim($urlParameters, '&');
 	}
 
-	public static function checkIfParameterRecognized($parameterName){
+	public static function checkIfParameterRecognized($parameterName)
+	{
 		return in_array($parameterName, self::$arrayOfAllowedParameters);
 	}
 
-	public static function checkIfParameterContainsAllowedValue($parameterName, $parameterValue){
-		if(array_key_exists($parameterName, self::$arrayOfAllowedParameterValues)){
-			if(!in_array($parameterValue, self::$arrayOfAllowedParameterValues[$parameterName])){
+	public static function checkIfParameterContainsAllowedValue($parameterName, $parameterValue)
+	{
+		if(array_key_exists($parameterName, self::$arrayOfAllowedParameterValues))
+		{
+			if(!in_array($parameterValue, self::$arrayOfAllowedParameterValues[$parameterName]))
+			{
 				return false;
 			}
 		}
