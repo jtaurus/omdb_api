@@ -24,5 +24,7 @@ class OmdbResult extends AbstractResultParser{
 		$this->movieDataObject = new MovieData($this->dataAsArray);
 	}
 
-	public function
+	public function getMovieData(){
+		return $this->movieDataObject;
+	}
 }
