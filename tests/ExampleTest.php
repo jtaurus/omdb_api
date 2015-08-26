@@ -94,6 +94,7 @@ class ExampleTest extends TestCase {
 	}
 
 	public function testMovieDataCanBeAccessedViaArrayAccess(){
-		
+		$omdbApiInstance = App::make('OmdbApi');
+		$movieData = $omdbApiInstance->byTitle("guns")->
 	}
 }
