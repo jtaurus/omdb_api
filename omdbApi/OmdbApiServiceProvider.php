@@ -6,7 +6,8 @@ class OmdbApiServiceProvider extends ServiceProvider{
 	
 	public function register()
 	{
-		$this->app->bind("OmdbApi", function(){
+		$this->app->bind("OmdbApi", function()
+			{
 			return new OmdbApi();
 			});
 	}
