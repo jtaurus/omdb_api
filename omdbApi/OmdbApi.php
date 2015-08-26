@@ -32,7 +32,7 @@ class OmdbApi{
 	public function search($query, $return = "json"){
 		$queryUrl = QueryBuilder::create(array("s" => $query, "r" => $return));
 		echo $queryUrl;
-		$searchResult = (new OmdbQuery)->runQuery($queryUrl, new SearchResultFactory());
+		$searchResult = (new OmdbQuery)->runQuery($queryUrl, new SearchParserFactory());
 		return $searchResult;
 	}
 }

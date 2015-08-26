@@ -3,7 +3,7 @@
 use Jtaurus\OmdbApi\CreateFromApiResponse;
 use Jtaurus\OmdbApi\SearchParser;
 
-class SearchResultFactory implements CreateFromApiResponse{
+class SearchParserFactory implements CreateFromApiResponse{
 	public function createFromApiResponse($apiResponse){
 		return new SearchParser((string) $apiResponse->getBody());
 	}
