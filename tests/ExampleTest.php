@@ -11,13 +11,13 @@ class ExampleTest extends TestCase {
 	public function testParameterSerializationInQueryBuilder(){
 		$arrayOfParameters = array("i" => "tt2267998",
 								"y" => "2014");
-		$this->assertEquals("?i=tt2267998&y=2014", Jtaurus\OmdbApi\QueryBuilder::serialize_parameters($arrayOfParameters));
+		$this->assertEquals("?i=tt2267998&y=2014&r=json", Jtaurus\OmdbApi\QueryBuilder::serialize_parameters($arrayOfParameters));
 	}
 
 	public function testQueryUrlCreationInQueryBuilder(){
 		$arrayOfParameters = array("i" => "tt2267998",
 								"y" => "2014");
-		$this->assertEquals("http://www.omdbapi.com/?i=tt2267998&y=2014", Jtaurus\OmdbApi\QueryBuilder::create($arrayOfParameters));
+		$this->assertEquals("http://www.omdbapi.com/?i=tt2267998&y=2014&r=json", Jtaurus\OmdbApi\QueryBuilder::create($arrayOfParameters));
 	}
 
 	public function testInvalidParametersGetCaught(){
