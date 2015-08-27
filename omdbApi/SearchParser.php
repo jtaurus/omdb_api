@@ -11,8 +11,24 @@ class SearchParser extends AbstractResultParser{
 	public function __construct($apiResponseBlob)
 	{
 		$this->handleApiResponse($apiResponseBlob);
+		$this->checkIfRequestSuccessful();
 		$this->parseResponseIntoAnArrayOfMovies();
 		$this->createSearchDataObject();
+	}
+
+	// @overrides AbstractResultParser->parseResponseMetaData
+	protected function parseResponseMetaData()
+	{
+		$this->responseSuccessful = (isset($this->dataAsArray["search"])) ? true : false;
+		$this->errorMessage =  (isset($this->dataAsArray["error"])) ? $this->dataAsArray["error"] : null;
+	}
+
+	protected function checkIfRequestSuccessful()
+	{
+		if(!$this->getResponseStatus())
+		{
+			throw new ZeroResultsReturned($this->getErrorMessage());
+		}
 	}
 
 	public function createSearchDataObject()
