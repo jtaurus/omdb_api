@@ -34,11 +34,20 @@ abstract class AbstractResultParser{
 			throw new UnrecognizedDataStructureReturnedByApi("Api did not return JSON nor XML.");
 		}
 		$this->parseResponseMetaData();
+		$this->checkIfRequestSuccessful();
 	}
 
 	public function convertJsonToArray()
 	{
 		$this->dataAsArray = $this->convertAllArrayKeysToLowerCase(json_decode($this->jsonData, true), CASE_LOWER);
+	}
+
+	protected function checkIfRequestSuccessful()
+	{
+		if(!$this->getResponseStatus())
+		{
+			throw new ZeroResultsReturned($this->getErrorMessage());
+		}
 	}
 
 	public function convertXmlToArray()
