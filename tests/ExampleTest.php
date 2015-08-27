@@ -149,4 +149,10 @@ class ExampleTest extends TestCase {
 		$this->assertNotNull($searchResultReference->getMovieData()->getTitle());
 	}
 
+	public function testIfOmdbFacadeWorks()
+	{
+		$this->assertInstanceOf("Jtaurus\OmdbApi\MovieData", Jtaurus\OmdbApi\Omdb::byTitle("gun"));
+		$this->assertInstanceOf("Jtaurus\OmdbApi\SearchData", Jtaurus\OmdbApi\Omdb::search("gun"));
+	}
+
 }
