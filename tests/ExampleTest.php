@@ -49,13 +49,13 @@ class ExampleTest extends TestCase {
 
 	public function testIfOmdbQueryCreatesOmdbResultObject(){
 		$queryInstance = new Jtaurus\OmdbApi\OmdbQuery();
-		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?s=gun&y=&plot=short&r=json", new Jtaurus\OmdbApi\OmdbResultFactory());
+		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?t=gun&y=&plot=short&r=json", new Jtaurus\OmdbApi\OmdbResultFactory());
 		$this->assertInstanceOf("Jtaurus\OmdbApi\OmdbResult", $omdbResultInstance);
 	}
 
 	public function testIfOmdbResultReceivesProperJsonFormattedData(){
 		$queryInstance = new Jtaurus\OmdbApi\OmdbQuery();
-		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?s=gun&y=&plot=short&r=json", new Jtaurus\OmdbApi\OmdbResultFactory());
+		$omdbResultInstance = $queryInstance->runQuery("http://www.omdbapi.com/?t=gun&y=&plot=short&r=json", new Jtaurus\OmdbApi\OmdbResultFactory());
 		$received = $omdbResultInstance->getJson();
 		$this->assertEquals($omdbResultInstance->isJson($received), true);
 	}
@@ -165,6 +165,11 @@ class ExampleTest extends TestCase {
 	{
 		$createdUrl = Jtaurus\OmdbApi\QueryBuilder::create(array("s" => "gun"));
 		$this->assertNotEquals(false, strstr($createdUrl, "&r=json"));
+	}
+
+	public function testOmdbResultThrowsZeroResults()
+	{
+
 	}
 
 }

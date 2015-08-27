@@ -1,5 +1,7 @@
 <?php
 
+use Jtaurus\OmdbApi\Omdb;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,4 +14,5 @@
 */
 
 Route::get('/', function(){
+	var_dump(Omdb::search("gun"));
 });
