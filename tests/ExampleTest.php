@@ -160,9 +160,12 @@ class ExampleTest extends TestCase {
 		$this->assertNotEquals(false, strstr($createdUrl, "&r=json"));
 	}
 
+    /**
+     * @expectedException Jtaurus\OmdbApi\ZeroResultsReturned
+     */
 	public function testOmdbResultThrowsZeroResults()
 	{
-
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?t=zxcvzxcvzxcvzx&r=json", new Jtaurus\OmdbApi\OmdbResultFactory);
 	}
 
 }
