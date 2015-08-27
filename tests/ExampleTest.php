@@ -79,13 +79,6 @@ class ExampleTest extends TestCase {
 		$this->assertEquals($resultOfJsonConversion, $resultOfXmlConversion);
 	}
 
-	public function testThatXmlAndJsonConversionOfErrorResultsInTheSameData(){
-		$omdbApiInstance = App::make('OmdbApi');
-		$resultOfXmlConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "xml");
-		$resultOfJsonConversion = $omdbApiInstance->byTitle("unknownstringresultinginapierror", "full", "json");
-		$this->assertEquals($resultOfJsonConversion, $resultOfXmlConversion);
-	}
-
 	public function testThatXmlAndJsonConversionResultsInExactlyTheSameData(){
 		$omdbApiInstance = App::make('OmdbApi');
 		$resultOfXmlConversion = $omdbApiInstance->byTitle("gun", "full", "xml");
