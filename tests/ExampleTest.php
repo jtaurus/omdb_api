@@ -155,4 +155,10 @@ class ExampleTest extends TestCase {
 		$this->assertInstanceOf("Jtaurus\OmdbApi\SearchData", Jtaurus\OmdbApi\Omdb::search("gun"));
 	}
 
+	public function testQueryBuilderAddsRequestInformationEvenIfWeDontProvideIt()
+	{
+		$createdUrl = Jtaurus\OmdbApi\QueryBuilder::create(array("s" => "gun"));
+		$this->assertNotEquals(false, strstr($createdUrl, "r="));
+	}
+
 }
