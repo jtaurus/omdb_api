@@ -161,4 +161,10 @@ class ExampleTest extends TestCase {
 		$this->assertNotEquals(false, strstr($createdUrl, "r="));
 	}
 
+	public function testQueryBuilderDeaultsToJsonRequestTypeWhenWeDontProvideAnything()
+	{
+		$createdUrl = Jtaurus\OmdbApi\QueryBuilder::create(array("s" => "gun"));
+		$this->assertNotEquals(false, strstr($createdUrl, "&r=json"));
+	}
+
 }
