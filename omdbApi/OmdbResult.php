@@ -19,7 +19,16 @@ class OmdbResult extends AbstractResultParser{
 	public function __construct($apiResponseBlob)
 	{
 		$this->handleApiResponse($apiResponseBlob);
+		$this->checkIfRequestSuccessful();
 		$this->instantiateMovieDataObject();
+	}
+
+	protected function checkIfRequestSuccessful()
+	{
+		if(!$this->getResponseStatus())
+		{
+			throw new ZeroResultsReturned($this->getErrorMessage());
+		}
 	}
 
 	protected function instantiateMovieDataObject()

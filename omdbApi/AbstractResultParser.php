@@ -2,7 +2,6 @@
 
 use Jtaurus\OmdbApi\UnrecognizedDataStructureReturnedByApi;
 use Exception;
-use Jtaurus\OmdbApi\ZeroResultsReturned;
 
 abstract class AbstractResultParser{
 	
@@ -136,10 +135,7 @@ abstract class AbstractResultParser{
 	{
 		$this->responseSuccessful = (isset($this->dataAsArray["response"]) && $this->dataAsArray["response"] == "True") ? true : false;
 		$this->errorMessage = (isset($this->dataAsArray["error"])) ? $this->dataAsArray["error"] : null;
-		if(!$this->responseSuccessful)
-		{
-			throw new ZeroResultsReturned($this->errorMessage);
-		}
 	}
+
 
 }
