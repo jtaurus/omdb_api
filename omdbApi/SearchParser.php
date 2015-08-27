@@ -13,6 +13,8 @@ class SearchParser extends AbstractResultParser{
 		$this->handleApiResponse($apiResponseBlob);
 		$this->parseResponseIntoAnArrayOfMovies();
 		$this->createSearchDataObject();
+		$this->parseResponseMetaData();
+		$this->checkIfRequestSuccessful();
 	}
 
 	// @overrides AbstractResultParser->parseResponseMetaData
