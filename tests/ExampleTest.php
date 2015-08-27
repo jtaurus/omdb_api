@@ -167,5 +167,11 @@ class ExampleTest extends TestCase {
 	{
 		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?t=zxcvzxcvzxcvzx&r=json", new Jtaurus\OmdbApi\OmdbResultFactory);
 	}
-
+    /**
+     * @expectedException Jtaurus\OmdbApi\ZeroResultsReturned
+     */
+	public function testSearchParserThrowsZeroResults()
+	{
+		$parserInstance = (new Jtaurus\OmdbApi\OmdbQuery)->runQuery("http://www.omdbapi.com/?s=zxcvzxcvzxcvzx&r=json", new Jtaurus\OmdbApi\SearchParserFactory);
+	}
 }
