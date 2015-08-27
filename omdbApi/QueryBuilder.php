@@ -16,6 +16,9 @@ class QueryBuilder{
 		"r" => array("json", "xml"),
 		"tomatoes" => array("true", "false"));
 
+	public static $arrayOfDefaultParameterValues = array(
+			"r" => "json");
+
 	public function __construct()
 	{
 
@@ -35,7 +38,7 @@ class QueryBuilder{
 	*/
 	public static function serialize_parameters($arrayOfParamaters)
 	{
-		//http://www.omdbapi.com/?t=lol&y=&plot=short&r=json
+		$arrayOfParamaters = self::addRequiredParameters($arrayOfParamaters);
 		$urlParameters = "?";
 		foreach($arrayOfParamaters as $key => $value)
 		{
@@ -67,6 +70,23 @@ class QueryBuilder{
 			}
 		}
 		return true;
+	}
+
+	public static function addRequiredParameters($paramArray)
+	{
+		foreach(self::$arrayOfDefaultParameterValues as $key => $value)
+		{
+			if(!array_key_exists($key, $paramArray))
+			{
+				$paramArray[$key] = $value;
+			}
+		}
+		return $paramArray;
+	}
+
+	public static function getDefaultParameterValue($paramName)
+	{
+		return self::$arrayOfDefaultParameterValues[$paramName];
 	}
 
 }
